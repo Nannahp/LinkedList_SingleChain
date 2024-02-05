@@ -1,9 +1,9 @@
 public class LinkedListSingle {
-    private Node head;
+     Node head;
 
-    //Creating our own Linked List - Single chain
-    //I've created the methods in the order given in the assignment, but afterward updated some methods
-    //where it made sense. The updated methods are at the bottom :)
+    public LinkedListSingle(){
+        this.head = null;
+    }
 
     public void addFirst(int data) {
         if (head == null) {
@@ -34,7 +34,7 @@ public class LinkedListSingle {
             Node current = head;
             Node newNode = new Node(data);
             int count = 0;
-
+            //Go through nodes until the next node is null, meaning it is the last node OR the count < index-1
             while (current.getNextNode() != null && count < index - 1) {
                 current = current.getNextNode();
                 count++;
@@ -80,7 +80,7 @@ public class LinkedListSingle {
         if (index == 0) {
             removeFirst();
 
-        } else if (index > getSize()) {
+        } else if (index > getSize()) { //uses getSize, might be cheating
             System.out.println("index out of bounds");
 
         } else {
@@ -93,6 +93,7 @@ public class LinkedListSingle {
                 current = current.getNextNode();
                 count++;
             }
+
             previous.setNextNode(current.getNextNode());
 
         }
@@ -120,11 +121,13 @@ public class LinkedListSingle {
         } else return false;
     }
 
+
+
     public int getSize() {
         int count = 0;
         if (head != null) {
             Node current = head;
-            while (current.getNextNode() != null) {
+            while (current != null) {
                 current = current.getNextNode();
                 count++;
             }
@@ -139,7 +142,7 @@ public class LinkedListSingle {
             if (head.getNextNode() == null) {
                 head = null;
             } else {
-                Node node = getIndex(getSize() - 1);
+                Node node = getIndex(getSize() -2);
                 node.setNextNode(null);
             }
         }
